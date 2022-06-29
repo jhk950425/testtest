@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: samsung
+---
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: env-samsung
+spec: 
+  containers: 
+  - name: env-samsung-ctn
+    image: nginx
+    envFrom: 
+    - configMapRef: 
+        name: indexsamsung
+---

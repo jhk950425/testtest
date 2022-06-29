@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: nav-pod
+spec: 
+  containers: 
+  - name: nav-ctn 
+    image: nginx 
+    volumeMounts: 
+    - name: nav-vol 
+      mountPath: /usr/share/nginx/html/web 
+
+
+  volumes: 
+  - name: nav-vol 
+    nfs: 
+      path: /k8s 
+      server: 211.183.3.99
+---
+apiVersion: v1  # 외부노출
+kind: Service
+metadata:
+  name: naver-lb
+  namespace: naver
+spec:
+  ports:
+  - name: nav-port
+    targetPort: 80
+    port: 80
+  selector:
+    app: my-nav-pods-label
+  type: LoadBalancer

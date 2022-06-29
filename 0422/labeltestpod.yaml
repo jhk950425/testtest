@@ -1,0 +1,11 @@
+apiVersion: v1 
+kind: Pod 
+metadata: 
+  name: testpod 
+spec: 
+  nodeSelector: 
+    zone: seoul 
+    level: med
+  containers: 
+  - name: testctn 
+    image: nginx 

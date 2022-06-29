@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: vol-samsung
+spec: 
+  containers: 
+  - name: vol-samsung
+    image: nginx
+    volumeMounts:
+    - name: vol-samsung
+      mountPath: /usr/share/nginx/html/index.html
+  volumes:
+  - name: vol-samsung
+    configMap:
+      name: samsung

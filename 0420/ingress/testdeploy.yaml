@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-main
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      page: main
+  template:
+    metadata:
+      name: pod-main
+      labels:
+        page: main
+    spec:
+      containers:
+      - name: ctn-main
+        image: nginx
+        ports:
+        - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-blog
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      page: blog
+  template:
+    metadata:
+      name: pod-blog
+      labels:
+        page: blog
+    spec:
+      containers:
+      - name: ctn-blog
+        image: jhk950425/testweb:blue
+        ports:
+        - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-shop
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      page: shop
+  template:
+    metadata:
+      name: pod-shop
+      labels:
+        page: shop
+    spec:
+      containers:
+      - name: ctn-shop
+        image: jhk950425/testweb:green
+        ports:
+        - containerPort: 80
